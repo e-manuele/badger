@@ -9,6 +9,7 @@ logging.basicConfig(level=logging.DEBUG,
 card_db=['2236835850','3111483307','2798319075']
 com = ""
 target = ":x.0"
+name_1 ="COM3"
 name ="COM20"
 ports = list(port_list.comports())
 for port in ports:
