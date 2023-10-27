@@ -7,6 +7,7 @@ logging.basicConfig(level=logging.DEBUG,
                     datefmt='%m-%d %H:%M',
                     filename='example.log')
 card_db=['2236835850','3111483307','2798319075']
+card_dict={'2236835850': "Gianluca",'3111483307':"Matteo",'2798319075': "Thomas"}
 com = ""
 target = ":x.0"
 name_1 ="COM3"
@@ -52,6 +53,7 @@ for port in ports:
                             print(f"Match found with {card}")
                             logging.debug('This message was written from pico: ')
                             logging.info(card)
+                            logging.info(card_dict[card])
                         else:
                             s.write(b"no\n")
                             print("Match not found")
