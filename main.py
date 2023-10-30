@@ -10,6 +10,7 @@ led_green.value(0)
 led_red.value(0)
 led_blue.value(0)
 reader = MFRC522(spi_id=0,sck=2,mosi=3,miso=4,cs=5,rst=0)
+card_db=['2236835850','3111483307','2798319075']
 #2798319075
 def toggle(obj):
         obj.value(1)
@@ -18,27 +19,22 @@ def toggle(obj):
 print("OK")
 
 while True:
-        
-        # read a command from the host
-        v = sys.stdin.readline().strip()
-        if v.lower() == ".":
-            toggle(led_blue)
-        elif v.lower() == "..on":
-            print("...attiva")
-        elif v.lower() == "ok":
-            toggle(led_green)
-        elif v.lower()=="no":
-            toggle(led_red)
-        else:
-            print("Not found")
-        
-        # read a card from the rfid module
+        toggle(led_blue)      
         reader.init()
         (stat, tag_type) = reader.request(reader.REQIDL)
         if stat == reader.OK:
             (stat, uid) = reader.SelectTagSN()
             if stat == reader.OK:
                 card = int.from_bytes(bytes(uid),"little",False)
+                if str(card) in card_db:
+                    toggle(led_green)
+                else:
+                    toggle(led_red)
                 print(str(card))
-        time.sleep(1) 
-
+                
+                
+        v = sys.stdin.readline().strip()
+        if v.lower() == "..on":
+            print("...ok")
+        elif v.lower() == ".":
+            continue
