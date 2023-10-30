@@ -2,7 +2,7 @@ from cx_Freeze import setup, Executable
 
 base = None
 
-executables = [Executable("logger.py", base=base, target_name = 'Badger',icon="icon.ico")]
+executables = [Executable("host.py", base=base, target_name = 'Badger',icon="icon.ico")]
 
 packages = ["idna"]
 options = {
