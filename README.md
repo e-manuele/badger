@@ -9,14 +9,14 @@ https://docs.micropython.org/en/latest/library/pyb.USB_VCP.html
 
 from datetime import datetime
 
-# dates in string format
-str_d1 = '2021/10/20'
-str_d2 = '2022/2/20'
+str_d1="10-20 18:19"
+str_d2="10-20 19:40"
 
-# convert string to date object
-d1 = datetime.strptime(str_d1, "%Y/%m/%d")
-d2 = datetime.strptime(str_d2, "%Y/%m/%d")
+d1 = datetime.strptime(str_d1, "%m-%d %H:%M")
+d2 = datetime.strptime(str_d2, "%m-%d %H:%M")
 
-# difference between dates in timedelta
-delta = d2 - d1
-print(f'Difference is {delta.days} days')
+delta = d2 - d1 
+
+diff_in_hours = delta.total_seconds() / 3600
+print('Difference between two datetimes in hours:')
+print(diff_in_hours)
